@@ -1,92 +1,212 @@
-# EVI - Evidence Investigator (Log Tampering Detector)
+# 📄 README — EVI (Evidence Investigator)
 
-**Easy Log Checker for Everyone**
+## 🤖 EVI — Evidence Investigator
 
-**What is EVI?**
-EVI finds **missing parts** in log files (like gaps in a story). Perfect for detecting if someone deleted evidence.
+**Detecting the logs that aren't there.**
 
-**Why use it?**
-- Check if logs were tampered with
-- See if your system was hacked
-- Simple for beginners, powerful for pros
+EVI is a cybersecurity-focused log analysis tool that identifies **missing or tampered log entries** by detecting **unexpected gaps in timestamps**. Instead of only analyzing what exists, EVI highlights **what should exist but doesn't**—a critical blind spot in traditional systems.
 
-## 🚀 Start in 1 Minute
+---
 
-1. `git clone https://github.com/kasmya/evi-evidence-inspector.git`
-2. `cd evi-evidence-inspector`
-3. `pip install -r requirements.txt`
-4. `python main.py`
+## 🚀 Overview
 
-**Press 4 for instant demo!**
+In modern systems, logs are treated as a source of truth. However, attackers often **delete or manipulate logs** to hide their activity.
 
-## 📂 Where is Everything?
+EVI addresses this by:
 
-**Run:** `main.py` (this file starts EVI)
+* Parsing logs from multiple formats
+* Reconstructing event timelines
+* Detecting suspicious gaps in activity
+* Classifying severity of anomalies
+* Presenting results via an interactive terminal dashboard
 
-**Code Structure:**
+---
+
+## 🎯 Key Features
+
+### 🔍 Log Analysis
+
+* Supports multiple formats:
+  * ISO timestamps
+  * Apache logs
+  * Syslog
+* Normalizes timestamps into a unified timeline
+
+### ⏱️ Gap Detection Engine
+
+* Calculates time differences between consecutive log entries
+* Flags gaps exceeding defined thresholds
+
+### 🚨 Severity Classification
+
+| Severity | Condition    | Meaning                         |
+| -------- | ------------ | ------------------------------- |
+| LOW      | < 60 seconds | Normal system delay             |
+| MEDIUM   | 1–5 minutes  | Suspicious activity             |
+| CRITICAL | > 5 minutes  | Possible log tampering/deletion |
+
+---
+
+### 🤖 EVI Assistant (AI Persona)
+
+EVI is not just a tool—it behaves like a **digital forensic analyst**:
+
+* Explains findings in human-readable language
+* Guides investigation steps
+* Highlights critical anomalies
+
+---
+
+### 🖥️ Interactive TUI Dashboard
+
+* Clean terminal-based interface
+* Real-time status updates
+* Action-driven workflow:
+  * Forensic Scan
+  * Live Monitoring
+  * Hybrid Mode
+  * Demo Simulation
+
+---
+
+## 🧠 How It Works
+
+```text
+Logs → Parsing → Normalization → Timeline Reconstruction
+     → Gap Detection → Severity Scoring → User Output
 ```
-┌─ main.py              ← RUN THIS
-├── conversation/       ← EVI talks to you
-├── core/              ← Finds gaps (engine.py)
-├── tui/               ← Pretty terminal screen
-├── modes/             ← 1.Forensic 2.Live 3.Hybrid
-├── mascot/            ← EVI robot art
-├── test_logs/         ← Demo files
-│   ├── clean.log      ← Normal logs
-│   └── tampered.log   ← BROKEN logs (gaps!)
-├── requirements.txt   ← pip install
-├── README.md          ← You are here
-└── HOW_IT_WORKS.md    ← Tech details
+
+### Step-by-step:
+
+1. Extract timestamps from logs
+2. Convert to a standard format
+3. Sort chronologically
+4. Compute time differences between entries
+5. Flag anomalies based on thresholds
+6. Display results with explanations
+
+---
+
+## 🧪 Modes of Operation
+
+### 1. Forensic Scan
+
+* Full analysis of existing log files
+* Identifies historical anomalies
+
+### 2. Live Monitor
+
+* Continuously monitors logs (streaming/tail mode)
+* Detects gaps in real time
+
+### 3. Hybrid Mode
+
+* Combines historical scan + live monitoring
+
+### 4. Demo Mode
+
+* Simulates log tampering
+* Useful for presentations and testing
+
+---
+
+## 📸 Sample Output
+
+```text
+🤖 EVI
+"Starting forensic scan..."
+
+• Parsing timestamps...
+• Checking sequence...
+⚠ Gap detected: 7 minutes
+
+Result: CRITICAL
+
+"This gap may indicate deleted or tampered logs."
 ```
 
-**Test Logs Explained:**
-- `test_logs/clean.log` = Perfect logs (no gaps)
-- `test_logs/tampered.log` = Fake hacked logs (missing 30min = CRITICAL!)
+---
 
-## 🎮 How to Use
+## 🛠️ Tech Stack
 
-**Dashboard Options:**
-- **1** Scan file (forensic) → `test_logs/tampered.log` [ENTER]
-- **2** Watch live log
-- **3** Scan + watch
-- **4** Demo (no files needed!)
-- **0** Exit
+* **Python** — Core logic
+* **Rich (TUI library)** — Terminal UI dashboard
+* **Datetime / Parsing utilities** — Timestamp handling
 
-**Example Output:**
+---
+
+## 📦 Installation
+
+```bash
+git clone https://github.com/kasmya/evi-evidence-inspector.git
+cd evi-evidence-inspector
+pip install -r requirements.txt
 ```
-CRITICAL gap detected: 30 minutes missing!
-Likely logs were deleted.
+
+---
+
+## ▶️ Usage
+
+```bash
+python main.py
 ```
 
-## 🤔 For Beginners
+### Menu Options:
 
-**What are logs?**
-Computer diary (every action timestamped).
-
-**What are gaps?**
 ```
-10:00 Normal
-10:30 ???? MISSING ????
-11:00 Normal
+1. Forensic Scan
+2. Live Monitor
+3. Hybrid Mode
+4. Demo Simulation
+5. Help / Explanation
+0. Exit
 ```
-→ EVI flags **30min gap = suspicious!**
 
-## 📱 Screenshot Guide
+---
 
-1. Run → See logo + intro
-2. Dashboard appears
-3. Type **4** → See demo gaps
-4. Type **1** → Scan tampered.log → See CRITICAL!
+## 📊 Use Cases
 
-## 🔧 Quick Fixes
+* 🔐 Cybersecurity investigations
+* 🕵️ Digital forensics
+* 🏢 Insider threat detection
+* 📋 Compliance auditing
+* 🚨 Incident response
 
-- Error "rich not found" → `pip install -r requirements.txt`
-- No demo → Use test_logs/tampered.log
+---
 
-**Share:** Zip folder or clone repo!
+## ⚠️ Limitations
 
-**Repo:** https://github.com/kasmya/evi-evidence-inspector/tree/main
-**Code:** All Python files in root + folders above.
+* Assumes timestamp integrity within remaining logs
+* Does not yet correlate across distributed systems
+* Requires structured or semi-structured logs
 
-⭐ Questions? Issues welcome!
+---
 
+## 🔮 Future Improvements
+
+* Multi-system correlation
+* Machine learning anomaly detection
+* Visualization dashboard (web-based)
+* Integration with SIEM tools
+* Voice-enabled EVI assistant
+
+---
+
+## 👥 Team
+
+* **Kasmya Bhatia**
+* **Amisha Singh**
+* **Ashwarya Pradhan**
+
+---
+
+## 📜 License
+
+MIT License
+
+---
+
+## 💬 Final Note
+
+> Logs tell stories.
+> EVI finds the missing chapters.
