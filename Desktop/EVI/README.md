@@ -1,124 +1,92 @@
-# 🤖 EVI - Evidence Investigator
+# EVI - Evidence Investigator (Log Tampering Detector)
 
-**Simple Log Tampering Detector for Beginners**
+**Easy Log Checker for Everyone**
 
-EVI (Evidence Investigator) is a beginner-friendly tool that checks system logs for signs of tampering. It looks for **missing time gaps** that might indicate deleted entries (common in cyber attacks).
+**What is EVI?**
+EVI finds **missing parts** in log files (like gaps in a story). Perfect for detecting if someone deleted evidence.
 
-## 🎯 What Does EVI Do? (No Tech Background Needed)
+**Why use it?**
+- Check if logs were tampered with
+- See if your system was hacked
+- Simple for beginners, powerful for pros
 
-Imagine logs are a timeline of your computer's activity. If there's a **big gap** (e.g., 30 minutes missing), EVI flags it as suspicious.
+## 🚀 Start in 1 Minute
 
-**Real-World Use:**
-- Check if someone deleted log entries to hide hacking
-- Verify system activity during incidents
-- Monitor live logs for sudden gaps
+1. `git clone https://github.com/kasmya/evi-evidence-inspector.git`
+2. `cd evi-evidence-inspector`
+3. `pip install -r requirements.txt`
+4. `python main.py`
 
-**Classification (Easy to Understand):**
-- **LOW**: Normal pause (like coffee break)
-- **MEDIUM**: Unusual - check manually
-- **CRITICAL**: Likely tampering!
+**Press 4 for instant demo!**
 
-## 🚀 Quick Start (5 Minutes)
+## 📂 Where is Everything?
 
-1. **Clone & Enter:**
+**Run:** `main.py` (this file starts EVI)
+
+**Code Structure:**
 ```
-git clone https://github.com/kasmya/evi-evidence-inspector.git
-cd evi-evidence-inspector
-```
-
-2. **Install:**
-```
-pip install -r requirements.txt
-```
-
-3. **Run:**
-```
-python main.py
-```
-
-4. **Demo (No Own Logs Needed):**
-```
-[ENTER at startup] → EVI > 4 → See tampering demo!
+┌─ main.py              ← RUN THIS
+├── conversation/       ← EVI talks to you
+├── core/              ← Finds gaps (engine.py)
+├── tui/               ← Pretty terminal screen
+├── modes/             ← 1.Forensic 2.Live 3.Hybrid
+├── mascot/            ← EVI robot art
+├── test_logs/         ← Demo files
+│   ├── clean.log      ← Normal logs
+│   └── tampered.log   ← BROKEN logs (gaps!)
+├── requirements.txt   ← pip install
+├── README.md          ← You are here
+└── HOW_IT_WORKS.md    ← Tech details
 ```
 
-## 📱 What You See
+**Test Logs Explained:**
+- `test_logs/clean.log` = Perfect logs (no gaps)
+- `test_logs/tampered.log` = Fake hacked logs (missing 30min = CRITICAL!)
 
+## 🎮 How to Use
+
+**Dashboard Options:**
+- **1** Scan file (forensic) → `test_logs/tampered.log` [ENTER]
+- **2** Watch live log
+- **3** Scan + watch
+- **4** Demo (no files needed!)
+- **0** Exit
+
+**Example Output:**
 ```
-EVI ASCII Logo
-Full Intro (what EVI does)
-Dashboard:
-  📊 System Status     | 🔍 Findings
-  [1-5 Actions]         | CRITICAL gaps found!
-EVI > [type 1 for scan]
-```
-
-**Example Scan:**
-- Input: `test_logs/tampered.log` [ENTER]
-- Output: "CRITICAL gap: 30 minutes - logs likely deleted!"
-
-## 📂 File Structure (Same as Your Laptop)
-
-```
-EVI/
-├── main.py              # Run this!
-├── requirements.txt     # pip install
-├── README.md           # This file
-├── HOW_IT_WORKS.md     # Technical details
-├── TODO.md             # Future features
-├── .gitignore          # Ignores junk
-├── conversation/       # EVI talks/chat
-├── core/               # Gap detection engine
-├── mascot/             # EVI robot ASCII
-├── modes/              # Scan/live/hybrid
-├── test_logs/          # Demo files (tampered.log = bad example)
-└── tui/                # Text UI (Rich terminal)
+CRITICAL gap detected: 30 minutes missing!
+Likely logs were deleted.
 ```
 
-## 🎮 Usage Modes
+## 🤔 For Beginners
 
-| Choice | What | Example |
-|--------|------|---------|
-| **1 Forensic** | Analyze saved log | `test_logs/tampered.log` |
-| **2 Live** | Watch log file real-time | System `/var/log/syslog` |
-| **3 Hybrid** | Both above | Scan + watch |
-| **4 Demo** | Fake tampering demo | No files needed |
-| **5 Help** | Commands list |
-| **0 Exit** | Goodbye |
+**What are logs?**
+Computer diary (every action timestamped).
 
-## 🔍 How Gap Detection Works (Simple)
-
-1. Read log timestamps (e.g., "2024-10-01 10:00:01")
-2. Calculate gaps between lines (>60s = flag)
-3. Classify: Low (1min), Medium (5min), Critical (30min+)
-
-**Test Files:**
-- `clean.log` = Normal (no flags)
-- `tampered.log` = Gaps (CRITICAL!)
-
-## 🛠️ Customize
-
-- Edit `core/engine.py` threshold (line ~30)
-- Add your logs to `test_logs/`
-- Live: Point to `/var/log/auth.log`
-
-## 📞 Troubleshooting
-
-**"Module not found"** → `pip install -r requirements.txt`
-**"Permission denied"** → Use sudo for system logs
-**"No gaps"** → Try tampered.log demo
-
-## 🤝 Share with Coworker
-
+**What are gaps?**
 ```
-git clone https://github.com/kasmya/evi-evidence-inspector.git
-cd evi-evidence-inspector
-pip install -r requirements.txt
-python main.py  # Press 4 for demo
+10:00 Normal
+10:30 ???? MISSING ????
+11:00 Normal
 ```
+→ EVI flags **30min gap = suspicious!**
 
-**Non-Tech:** Just copy the folder + `python main.py`
+## 📱 Screenshot Guide
 
----
+1. Run → See logo + intro
+2. Dashboard appears
+3. Type **4** → See demo gaps
+4. Type **1** → Scan tampered.log → See CRITICAL!
 
-⭐ **Star if useful!** Questions? Open issue.
+## 🔧 Quick Fixes
+
+- Error "rich not found" → `pip install -r requirements.txt`
+- No demo → Use test_logs/tampered.log
+
+**Share:** Zip folder or clone repo!
+
+**Repo:** https://github.com/kasmya/evi-evidence-inspector/tree/main
+**Code:** All Python files in root + folders above.
+
+⭐ Questions? Issues welcome!
 
