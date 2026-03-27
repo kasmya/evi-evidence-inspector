@@ -1,0 +1,9 @@
+Oct 1 10:00:01 server Normal entry 1
+Oct 1 10:00:02 server Normal entry 2
+Oct 1 10:00:03 server Normal entry 3
+
+Oct 1 10:04:10 server Entry after 4min gap (MEDIUM ~240s)
+Oct 1 10:04:11 server Normal entry 5
+
+Oct 1 10:34:45 server Entry after 30min gap (CRITICAL ~1815s)
+Oct 1 10:34:46 server Final entry
